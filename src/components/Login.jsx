@@ -1,4 +1,7 @@
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { useAuthContext } from '../contexts/AuthContext';
 
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -14,13 +17,32 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
 export default function Login() {
-    const handleSubmit = (event) => {
+    const { login } = useAuthContext();
+    const navigate = useNavigate();
+    const [error, setError] = React.useState('');
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
+
         const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
+
+        const response = await fetch('https://dummyjson.com/auth/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                username: data.get('username'),
+                password: data.get('password'),
+            })
         });
+        const result = await response.json();
+
+        if (response.ok) {
+            login(result);
+
+            return navigate('/');
+        }
+
+        setError(result.message);
     };
 
     return (
@@ -42,13 +64,15 @@ export default function Login() {
                 </Typography>
                 <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                     <TextField
+                        error={!!error}
+                        helperText={error}
                         margin="normal"
                         required
                         fullWidth
-                        id="email"
-                        label="Email Address"
-                        name="email"
-                        autoComplete="email"
+                        id="username"
+                        label="Username"
+                        name="username"
+                        autoComplete="username"
                         autoFocus
                     />
                     <TextField

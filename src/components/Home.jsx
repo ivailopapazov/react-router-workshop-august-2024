@@ -1,5 +1,11 @@
+import CssBaseline from '@mui/material/CssBaseline';
+import Container from '@mui/material/Container';
+
 export default function Home() {
     return (
-        <h1>Home Page</h1>
+        <Container component="main" maxWidth="xs">
+            <CssBaseline />
+            <h1>Home Page</h1>
+        </Container>
     );
 }
