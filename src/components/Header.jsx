@@ -14,7 +14,12 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
-const pages = ['Home', 'Pricing', 'Login', 'Register'];
+const pages = [
+    { title: 'Home', link: '/' },
+    { title: 'Pricing', link: '/pricing' },
+    { title: 'Login', link: '/login' },
+    { title: 'Register', link: '/register' },
+];
 const settings = ['Profile', 'Logout'];
 
 function Header() {
@@ -88,9 +93,9 @@ function Header() {
                                 display: { xs: 'block', md: 'none' },
                             }}
                         >
-                            {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page}</Typography>
+                            {pages.map(({ title }) => (
+                                <MenuItem key={title} onClick={handleCloseNavMenu}>
+                                    <Typography textAlign="center">{title}</Typography>
                                 </MenuItem>
                             ))}
                         </Menu>
@@ -115,13 +120,14 @@ function Header() {
                         LOGO
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        {pages.map((page) => (
+                        {pages.map(({ title, link }) => (
                             <Button
-                                key={page}
+                                href={link}
+                                key={title}
                                 onClick={handleCloseNavMenu}
                                 sx={{ my: 2, color: 'white', display: 'block' }}
                             >
-                                {page}
+                                {title}
                             </Button>
                         ))}
                     </Box>

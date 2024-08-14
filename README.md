@@ -7,3 +7,5 @@ Sirma Academy React Router Workshop
 2. Initial vite project
 3. Add mui component library 
 4. Add react router
+   * Setup react-router-dom
+   * Add routes
