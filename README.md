@@ -9,3 +9,4 @@ Sirma Academy React Router Workshop
 4. Add react router
    * Setup react-router-dom
    * Add routes
+   * Change links (without page reload)

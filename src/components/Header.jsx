@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -15,10 +16,10 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
 const pages = [
-    { title: 'Home', link: '/' },
-    { title: 'Pricing', link: '/pricing' },
-    { title: 'Login', link: '/login' },
-    { title: 'Register', link: '/register' },
+    { title: 'Home', path: '/' },
+    { title: 'Pricing', path: '/pricing' },
+    { title: 'Login', path: '/login' },
+    { title: 'Register', path: '/register' },
 ];
 const settings = ['Profile', 'Logout'];
 
@@ -120,9 +121,10 @@ function Header() {
                         LOGO
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        {pages.map(({ title, link }) => (
+                        {pages.map(({ title, path }) => (
                             <Button
-                                href={link}
+                                component={Link}
+                                to={path}
                                 key={title}
                                 onClick={handleCloseNavMenu}
                                 sx={{ my: 2, color: 'white', display: 'block' }}
