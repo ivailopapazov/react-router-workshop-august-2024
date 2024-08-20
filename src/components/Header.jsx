@@ -22,6 +22,7 @@ const pages = [
     { title: 'Todos', path: '/todos' },
     { title: 'Login', path: '/login', guestOnly: true },
     { title: 'Register', path: '/register', guestOnly: true },
+    { title: 'Add Todo', path: '/todos/add' },
 ];
 const settings = ['Profile', 'Logout'];
 

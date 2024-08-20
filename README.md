@@ -15,3 +15,12 @@ Sirma Academy React Router Workshop
    * React Rotuer
    * MUI
    * REST API - https://dummyjson.com/
+
+## React-Query
+1. Install packages
+   `npm i @tanstack/react-query`
+   `npm i -D @tanstack/eslint-plugin-query`
+   `npm i -D @tanstack/react-query-devtools`
+2. Config eslint plugin
+3. Config react query client and provider
+4. Config react query devtools
