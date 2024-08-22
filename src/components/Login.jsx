@@ -14,7 +14,6 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
 
 export default function Login() {
     const { login } = useAuthContext();
@@ -46,8 +45,7 @@ export default function Login() {
     };
 
     return (
-        <Container component="main" maxWidth="xs">
-            <CssBaseline />
+        <>
             <Box
                 sx={{
                     marginTop: 8,
@@ -112,7 +110,7 @@ export default function Login() {
                 </Box>
             </Box>
             <Copyright sx={{ mt: 8, mb: 4 }} />
-        </Container>
+        </>
     );
 }
 

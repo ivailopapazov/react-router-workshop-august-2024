@@ -11,7 +11,6 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
 
 export default function Register() {
     const handleSubmit = (event) => {
@@ -24,8 +23,7 @@ export default function Register() {
     };
 
     return (
-        <Container component="main" maxWidth="xs">
-            <CssBaseline />
+        <>
             <Box
                 sx={{
                     marginTop: 8,
@@ -109,7 +107,7 @@ export default function Register() {
                 </Box>
             </Box>
             <Copyright sx={{ mt: 5 }} />
-        </Container>
+        </>
     );
 }
 

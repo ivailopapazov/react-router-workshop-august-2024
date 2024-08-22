@@ -1,15 +1,13 @@
 import * as React from 'react';
 
 import { useTodosUpdate } from '../queries/useTodosUpdate';
-import { useTodosQuery } from '../queries/useTodosQuery';
+import { useGetTodos } from '../queries/useGetTodos';
 
-import CssBaseline from '@mui/material/CssBaseline';
-import Container from '@mui/material/Container';
 import List from '@mui/material/List';
 import TodoListItem from './TodoListItem';
 
 export default function TodoList() {
-    const todosQuery = useTodosQuery();
+    const todosQuery = useGetTodos();
     const todoMutation = useTodosUpdate();
 
     const todoClickHandler = (todo) => {
@@ -19,8 +17,7 @@ export default function TodoList() {
     };
 
     return (
-        <Container component="main" maxWidth="xs">
-            <CssBaseline />
+        <>
             <h1>Todo List</h1>
 
             {todosQuery.isError
@@ -39,6 +36,6 @@ export default function TodoList() {
                         </List>
                     )
             }
-        </Container>
+        </>
     );
 }
