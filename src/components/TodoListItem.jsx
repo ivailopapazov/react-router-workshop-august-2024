@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -19,6 +20,8 @@ export default function TodoListItem({
                 <IconButton
                     edge="end"
                     aria-label="details"
+                    LinkComponent={Link}
+                    to={`/todos/${todo.id}`}
                 >
                     <SettingsIcon />
                 </IconButton>
