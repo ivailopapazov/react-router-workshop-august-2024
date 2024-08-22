@@ -1,33 +1,21 @@
 import * as React from 'react';
 
+import { useTodosUpdate } from '../queries/useTodosUpdate';
 import { useTodosQuery } from '../queries/useTodosQuery';
 
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import Checkbox from '@mui/material/Checkbox';
-import IconButton from '@mui/material/IconButton';
-import CommentIcon from '@mui/icons-material/Comment';
+import TodoListItem from './TodoListItem';
 
 export default function TodoList() {
     const todosQuery = useTodosQuery();
-    const [checked, setChecked] = React.useState([0]);
+    const todoMutation = useTodosUpdate();
 
-    const handleToggle = (value) => () => {
-        const currentIndex = checked.indexOf(value);
-        const newChecked = [...checked];
+    const todoClickHandler = (todo) => {
+        const updatedTodo = { ...todo, completed: !todo.completed };
 
-        if (currentIndex === -1) {
-            newChecked.push(value);
-        } else {
-            newChecked.splice(currentIndex, 1);
-        }
-
-        setChecked(newChecked);
+        todoMutation.mutate(updatedTodo);
     };
 
     return (
@@ -41,34 +29,13 @@ export default function TodoList() {
                     ? <div>Loading Todos...</div>
                     : (
                         <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-                            {todosQuery.data.map((todo) => {
-                                const labelId = `checkbox-list-label-${todo.id}`;
-
-                                return (
-                                    <ListItem
-                                        key={todo.id}
-                                        secondaryAction={
-                                            <IconButton edge="end" aria-label="comments">
-                                                <CommentIcon />
-                                            </IconButton>
-                                        }
-                                        disablePadding
-                                    >
-                                        <ListItemButton role={undefined} onClick={handleToggle(todo.id)} dense>
-                                            <ListItemIcon>
-                                                <Checkbox
-                                                    edge="start"
-                                                    checked={checked.indexOf(todo.id) !== -1}
-                                                    tabIndex={-1}
-                                                    disableRipple
-                                                    inputProps={{ 'aria-labelledby': labelId }}
-                                                />
-                                            </ListItemIcon>
-                                            <ListItemText id={labelId} primary={todo.todo} />
-                                        </ListItemButton>
-                                    </ListItem>
-                                );
-                            })}
+                            {todosQuery.data.map((todo) =>
+                                <TodoListItem
+                                    key={todo.id}
+                                    todo={todo}
+                                    clickHandler={todoClickHandler}
+                                />
+                            )}
                         </List>
                     )
             }
